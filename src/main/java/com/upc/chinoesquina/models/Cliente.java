@@ -1,34 +1,44 @@
 package com.upc.chinoesquina.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "cliente")
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_cliente;
+    @Column(name = "id_cliente")
+    private Integer idCliente;
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "apellido")
     private String apellido;
-    private Integer id_documento_identidad;
-    private String nro_documento;
+    @Column(name = "id_documento_identidad")
+    private Integer idDocumentoIdentidad;
+    @Column(name = "nro_documento")
+    private String nroDocumento;
     private String email;
     private Boolean activo;
+    @JsonIgnore
     private Integer id_usuario_registro;
+    @JsonIgnore
     private Date fecha_registro;
+    @JsonIgnore
     private Integer id_usuario_modifico;
+    @JsonIgnore
     private Date fecha_modifico;
     private Boolean eliminado;
 
-    public Integer getId_cliente() {
-        return id_cliente;
+    public Integer getIdCliente() {
+        return idCliente;
     }
 
-    public void setId_cliente(Integer id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNombre() {
@@ -47,20 +57,20 @@ public class Cliente {
         this.apellido = apellido;
     }
 
-    public Integer getId_documento_identidad() {
-        return id_documento_identidad;
+    public Integer getIdDocumentoIdentidad() {
+        return idDocumentoIdentidad;
     }
 
-    public void setId_documento_identidad(Integer id_documento_identidad) {
-        this.id_documento_identidad = id_documento_identidad;
+    public void setIdDocumentoIdentidad(Integer idDocumentoIdentidad) {
+        this.idDocumentoIdentidad = idDocumentoIdentidad;
     }
 
-    public String getNro_documento() {
-        return nro_documento;
+    public String getNroDocumento() {
+        return nroDocumento;
     }
 
-    public void setNro_documento(String nro_documento) {
-        this.nro_documento = nro_documento;
+    public void setNroDocumento(String nroDocumento) {
+        this.nroDocumento = nroDocumento;
     }
 
     public String getEmail() {

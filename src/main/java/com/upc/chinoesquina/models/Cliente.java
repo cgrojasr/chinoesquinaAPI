@@ -13,12 +13,11 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
     private Integer idCliente;
-    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "apellido")
     private String apellido;
-    @Column(name = "id_documento_identidad")
-    private Integer idDocumentoIdentidad;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_documento_identidad", referencedColumnName = "id_documento_identidad")
+    private DocumentoIdentidad documentoIdentidad;
     @Column(name = "nro_documento")
     private String nroDocumento;
     private String email;
@@ -55,14 +54,6 @@ public class Cliente {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public Integer getIdDocumentoIdentidad() {
-        return idDocumentoIdentidad;
-    }
-
-    public void setIdDocumentoIdentidad(Integer idDocumentoIdentidad) {
-        this.idDocumentoIdentidad = idDocumentoIdentidad;
     }
 
     public String getNroDocumento() {
@@ -127,5 +118,13 @@ public class Cliente {
 
     public void setEliminado(Boolean eliminado) {
         this.eliminado = eliminado;
+    }
+
+    public DocumentoIdentidad getDocumentoIdentidad() {
+        return documentoIdentidad;
+    }
+
+    public void setDocumentoIdentidad(DocumentoIdentidad documentoIdentidad) {
+        this.documentoIdentidad = documentoIdentidad;
     }
 }

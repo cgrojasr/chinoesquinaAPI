@@ -1,30 +1,36 @@
 package com.upc.chinoesquina.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "documento_identidad")
 public class DocumentoIdentidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_documento_identidad;
+    @Column(name = "id_documento_identidad")
+    private Integer idDocumentoIdentidad;
     private String nombre;
+    private String abreviatura;
     private Boolean activo;
+    @JsonIgnore
     private Integer id_usuario_registro;
+    @JsonIgnore
     private Date fecha_registro;
+    @JsonIgnore
     private Integer id_usuario_modifico;
+    @JsonIgnore
     private Date fecha_modifico;
     private Boolean eliminado;
 
-    public Integer getId_documento_identidad() {
-        return id_documento_identidad;
+    public Integer getIdDocumentoIdentidad() {
+        return idDocumentoIdentidad;
     }
 
-    public void setId_documento_identidad(Integer id_documento_identidad) {
-        this.id_documento_identidad = id_documento_identidad;
+    public void setIdDocumentoIdentidad(Integer idDocumentoIdentidad) {
+        this.idDocumentoIdentidad = idDocumentoIdentidad;
     }
 
     public String getNombre() {
@@ -81,5 +87,13 @@ public class DocumentoIdentidad {
 
     public void setEliminado(Boolean eliminado) {
         this.eliminado = eliminado;
+    }
+
+    public String getAbreviatura() {
+        return abreviatura;
+    }
+
+    public void setAbreviatura(String abreviatura) {
+        this.abreviatura = abreviatura;
     }
 }

@@ -12,7 +12,7 @@ public class DocumentoIdentidadBL {
     @Autowired
     private DocumentoIdentidadDA objDocumentoIdentidadDA;
 
-    public List<DocumentoIdentidad> findAll(){
-        return objDocumentoIdentidadDA.findAll();
+    public List<DocumentoIdentidad> ListarTodo(){
+        return objDocumentoIdentidadDA.ListarTodo();
     }
 }

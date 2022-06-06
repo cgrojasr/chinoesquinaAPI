@@ -12,7 +12,7 @@ public class DocumentoIdentidadDA {
     @Autowired
     private IDocumentoIdentidadDA repository;
 
-    public List<DocumentoIdentidad> findAll(){
+    public List<DocumentoIdentidad> ListarTodo(){
         return repository.findAll();
     }
 }

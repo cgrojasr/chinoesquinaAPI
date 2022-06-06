@@ -13,10 +13,15 @@ public class ClienteBL {
     @Autowired
     private ClienteDA objClienteDA;
 
-    public List<Cliente> findAll(){
-        return  objClienteDA.findAll();
+    public List<Cliente> ListarTodo(){
+        return  objClienteDA.ListarTodo();
     }
-    public Optional<Cliente> findById(Integer idCliente){
-        return objClienteDA.findById(idCliente);
+
+    public Optional<Cliente> BuscarPorId(Integer idCliente){
+        return objClienteDA.BuscarPorId(idCliente);
+    }
+
+    public Cliente Registrar(Cliente objCliente) {
+        return  objClienteDA.Registrar(objCliente);
     }
 }

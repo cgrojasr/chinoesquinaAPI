@@ -13,10 +13,10 @@ import java.util.List;
 @RequestMapping("/documentoidentidad")
 public class DocumentoIdentidadController {
     @Autowired
-    private DocumentoIdentidadBL objDocumentoIdentidadBL = null;
+    private DocumentoIdentidadBL objDocumentoIdentidadBL;
 
-    @GetMapping("/findAll")
-    public List<DocumentoIdentidad> findAll(){
-        return objDocumentoIdentidadBL.findAll();
+    @GetMapping
+    public List<DocumentoIdentidad> ListarTodo(){
+        return objDocumentoIdentidadBL.ListarTodo();
     }
 }

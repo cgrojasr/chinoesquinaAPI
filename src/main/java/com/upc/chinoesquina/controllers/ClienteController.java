@@ -14,12 +14,18 @@ public class ClienteController {
     @Autowired
     private ClienteBL objClienteBL;
 
-    @GetMapping("/findAll")
-    public List<Cliente> findAll(){
-        return objClienteBL.findAll();
+    @GetMapping
+    public List<Cliente> ListarTodo(){
+        return objClienteBL.ListarTodo();
     }
+
     @GetMapping("/{idCliente}")
-    public Optional<Cliente> findById(@PathVariable Integer idCliente){
-        return objClienteBL.findById(idCliente);
+    public Optional<Cliente> BuscarPorId(@PathVariable Integer idCliente){
+        return objClienteBL.BuscarPorId(idCliente);
+    }
+
+    @PostMapping
+    public Cliente Registrar(@RequestBody Cliente objCliente){
+        return  objClienteBL.Registrar(objCliente);
     }
 }

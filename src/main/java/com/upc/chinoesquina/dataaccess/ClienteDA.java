@@ -13,10 +13,14 @@ public class ClienteDA {
     @Autowired
     private IClienteDA repository;
 
-    public List<Cliente> findAll(){
+    public List<Cliente> ListarTodo(){
         return repository.findAll();
     }
-    public Optional<Cliente> findById(Integer idCliente){
+    public Optional<Cliente> BuscarPorId(Integer idCliente){
         return repository.findById(idCliente);
+    }
+
+    public Cliente Registrar(Cliente objCliente){
+        return repository.save(objCliente);
     }
 }

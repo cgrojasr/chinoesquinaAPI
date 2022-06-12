@@ -6,7 +6,7 @@ import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
 @MappedSuperclass
-public abstract class AuditoriaData {
+public class AuditoriaData {
     private Boolean activo;
     @JsonIgnore
     @Column(name = "id_usuario_registro")

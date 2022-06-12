@@ -23,15 +23,15 @@ public class ClienteBL {
     }
 
     public Cliente Registrar(Cliente objCliente) {
-        objCliente.setFecha_registro(new Date(System.currentTimeMillis()));
+        objCliente.setFechaRegistro(new Date(System.currentTimeMillis()));
         return  objClienteDA.Registrar(objCliente);
     }
 
     public Cliente Modificar(Cliente objCliente) {
         Cliente objClienteDB = objClienteDA.BuscarPorId(objCliente.getIdCliente());
-        objCliente.setId_usuario_registro(objClienteDB.getId_usuario_registro());
-        objCliente.setFecha_registro(objClienteDB.getFecha_registro());
-        objCliente.setFecha_modifico(new Date(System.currentTimeMillis()));
+        objCliente.setIdUsuarioRegistro(objClienteDB.getIdUsuarioRegistro());
+        objCliente.setFechaRegistro(objClienteDB.getFechaRegistro());
+        objCliente.setFechaModifico(new Date(System.currentTimeMillis()));
         return objClienteDA.Registrar(objCliente);
     }
 

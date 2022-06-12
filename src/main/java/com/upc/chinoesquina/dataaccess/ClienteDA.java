@@ -5,6 +5,7 @@ import com.upc.chinoesquina.models.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +17,29 @@ public class ClienteDA {
     public List<Cliente> ListarTodo(){
         return repository.findAll();
     }
-    public Optional<Cliente> BuscarPorId(Integer idCliente){
-        return repository.findById(idCliente);
+
+    public Cliente BuscarPorId(Integer idCliente){
+        return repository.findById(idCliente).orElseThrow(()-> new EntityNotFoundException());
     }
 
     public Cliente Registrar(Cliente objCliente){
         return repository.save(objCliente);
+    }
+
+    public Boolean Eliminar(Integer idCliente){
+        repository.deleteById(idCliente);
+        return true;
+    }
+
+    public List<Cliente> BuscarPorNombreYApellido(String nombre, String apellido) {
+        return repository.findByNombreAndApellido(nombre, apellido);
+    }
+
+    public List<Cliente> BuscarPorNombre(String nombre) {
+        return repository.findByNombre(nombre);
+    }
+
+    public List<Cliente> BuscarPorApellido(String apellido) {
+        return repository.findByApellido(apellido);
     }
 }

@@ -20,12 +20,22 @@ public class PromocionController {
     }
 
     @GetMapping("/{idPromocion}")
-    public Optional<Promocion> BuscarPorId(@PathVariable Integer idPromocion){
+    public Promocion BuscarPorId(@PathVariable Integer idPromocion){
         return objPromocionBL.BuscarPorId(idPromocion);
     }
 
     @PostMapping
     public Promocion Registrar(@RequestBody Promocion objPromocion){
         return objPromocionBL.Registrar(objPromocion);
+    }
+
+    @PutMapping
+    public Promocion Modificar(@RequestBody Promocion objPromocion){
+        return objPromocionBL.Modificar(objPromocion);
+    }
+
+    @DeleteMapping("/{idPromocion}")
+    public Boolean Eliminar(@PathVariable Integer idPromocion){
+        return objPromocionBL.Eliminar(idPromocion);
     }
 }

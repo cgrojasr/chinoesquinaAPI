@@ -25,7 +25,19 @@ public class PromocionBL {
         return  objPromocionDA.Registrar(objPromocion);
     }
 
-    public Optional<Promocion> BuscarPorId(Integer idPromocion){
+    public Promocion BuscarPorId(Integer idPromocion){
         return objPromocionDA.BuscarPorId(idPromocion);
+    }
+
+    public Promocion Modificar(Promocion objPromocion){
+        Promocion objPromocionDB = objPromocionDA.BuscarPorId(objPromocion.getIdPromocion());
+        objPromocion.setFechaRegistro(objPromocionDB.getFechaRegistro());
+        objPromocion.setIdUsuarioRegistro(objPromocionDB.getIdUsuarioRegistro());
+        objPromocion.setFechaModifico(new Date(System.currentTimeMillis()));
+        return objPromocionDA.Modificar(objPromocion);
+    }
+
+    public Boolean Eliminar(Integer idPromocion){
+        return objPromocionDA.Eliminar(idPromocion);
     }
 }

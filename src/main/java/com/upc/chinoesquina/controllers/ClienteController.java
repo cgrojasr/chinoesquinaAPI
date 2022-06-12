@@ -20,12 +20,28 @@ public class ClienteController {
     }
 
     @GetMapping("/{idCliente}")
-    public Optional<Cliente> BuscarPorId(@PathVariable Integer idCliente){
+    public Cliente BuscarPorId(@PathVariable Integer idCliente){
         return objClienteBL.BuscarPorId(idCliente);
     }
 
     @PostMapping
     public Cliente Registrar(@RequestBody Cliente objCliente){
         return  objClienteBL.Registrar(objCliente);
+    }
+
+    @PutMapping
+    public Cliente Modificar(@RequestBody Cliente objCliente){
+        return  objClienteBL.Modificar(objCliente);
+    }
+
+    @DeleteMapping("/{idCliente}")
+    public Boolean Eliminar(@PathVariable Integer idCliente){
+        return objClienteBL.Eliminar(idCliente);
+    }
+
+    @GetMapping("/filtros")
+    public List<Cliente> ListarConFiltros(@RequestParam(value = "nombre", required = false) String nombre,
+                                          @RequestParam(value = "apellido", required = false) String apellido){
+        return objClienteBL.ListarConFiltros(nombre, apellido);
     }
 }

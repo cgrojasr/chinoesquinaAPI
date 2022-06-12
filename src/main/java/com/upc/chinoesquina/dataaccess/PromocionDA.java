@@ -21,7 +21,14 @@ public class PromocionDA {
         return repository.save(objPromocion);
     }
 
-    public Optional<Promocion> BuscarPorId(Integer idPromocion){
-        return repository.findById(idPromocion);
+    public Promocion BuscarPorId(Integer idPromocion){
+        return repository.findById(idPromocion).orElse(null);
+    }
+    public Promocion Modificar(Promocion objPromocion){
+        return repository.save(objPromocion);
+    }
+    public Boolean Eliminar(Integer idPromocion){
+        repository.deleteById(idPromocion);
+        return true;
     }
 }

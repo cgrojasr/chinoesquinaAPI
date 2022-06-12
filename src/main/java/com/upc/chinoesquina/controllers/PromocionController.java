@@ -5,8 +5,8 @@ import com.upc.chinoesquina.models.Promocion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/promocion")
@@ -37,5 +37,17 @@ public class PromocionController {
     @DeleteMapping("/{idPromocion}")
     public Boolean Eliminar(@PathVariable Integer idPromocion){
         return objPromocionBL.Eliminar(idPromocion);
+    }
+
+    @GetMapping("/filtros")
+    public List<Promocion> ListarPorFiltros(@RequestParam(value = "nombre", required = false) String nombre,
+                                            @RequestParam(value = "descripcion", required = false) String descripcion){
+        return objPromocionBL.ListarPorFiltros(nombre, descripcion);
+    }
+
+    @GetMapping("/fechas")
+    public List<Promocion> ListarPorRangoFechas(@RequestParam(value = "fechaInicio", required = false) Date fechaInicio,
+                                                @RequestParam(value = "fechaFinal", required = false) Date fechaFinal){
+        return objPromocionBL.ListarPorRangoFechas(fechaInicio, fechaFinal);
     }
 }

@@ -18,8 +18,8 @@ public class VentaDetalle {
     @JoinColumn(name = "id_producto_venta")
     private ProductoVenta productoVenta;
 
-    @Column(name = "valor_compra")
-    private Float valorCompra;
+    @Column(name = "valor_venta")
+    private Float valorVenta;
 
     private Integer cantidad;
 

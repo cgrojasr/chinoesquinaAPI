@@ -9,6 +9,6 @@ public class VentaProductoKey implements Serializable {
     @Column(name = "id_venta")
     private Integer idVenta;
 
-    @Column(name = "id_producto")
+    @Column(name = "id_producto_venta")
     private Integer idProducto;
 }

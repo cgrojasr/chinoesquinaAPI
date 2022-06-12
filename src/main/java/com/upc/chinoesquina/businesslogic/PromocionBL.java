@@ -34,10 +34,25 @@ public class PromocionBL {
         objPromocion.setFechaRegistro(objPromocionDB.getFechaRegistro());
         objPromocion.setIdUsuarioRegistro(objPromocionDB.getIdUsuarioRegistro());
         objPromocion.setFechaModifico(new Date(System.currentTimeMillis()));
-        return objPromocionDA.Modificar(objPromocion);
+        return objPromocionDA.Registrar(objPromocion);
     }
 
     public Boolean Eliminar(Integer idPromocion){
         return objPromocionDA.Eliminar(idPromocion);
+    }
+
+    public List<Promocion> ListarPorFiltros(String nombre, String descripcion){
+        if(nombre != null && descripcion != null)
+            return objPromocionDA.ListarPorNombreYDescripcion(nombre, descripcion);
+        else if(nombre != null & descripcion == null)
+            return objPromocionDA.ListarPorNombre(nombre);
+        else if(nombre == null & descripcion != null)
+            return objPromocionDA.ListarPorContenerDescripcion(descripcion);
+        else
+            return  objPromocionDA.ListarTodo();
+    }
+
+    public List<Promocion> ListarPorRangoFechas(Date fechaInicio, Date fechaFinal){
+        return objPromocionDA.ListarPorRangoFechas(fechaInicio, fechaFinal);
     }
 }

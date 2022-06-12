@@ -15,5 +15,5 @@ public class ProductoVenta extends AuditoriaData{
     private Float valorVenta;
 
     @OneToMany(mappedBy = "productoVenta")
-    private Set<VentaDetalle    > ventaDetalle;
+    private Set<VentaDetalle> ventaDetalle;
 }

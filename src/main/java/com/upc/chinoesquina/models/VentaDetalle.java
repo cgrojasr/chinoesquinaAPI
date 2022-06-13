@@ -24,4 +24,52 @@ public class VentaDetalle {
     private Integer cantidad;
 
     private Boolean eliminado;
+
+    public VentaProductoKey getId() {
+        return id;
+    }
+
+    public void setId(VentaProductoKey id) {
+        this.id = id;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public ProductoVenta getProductoVenta() {
+        return productoVenta;
+    }
+
+    public void setProductoVenta(ProductoVenta productoVenta) {
+        this.productoVenta = productoVenta;
+    }
+
+    public Float getValorVenta() {
+        return valorVenta;
+    }
+
+    public void setValorVenta(Float valorVenta) {
+        this.valorVenta = valorVenta;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Boolean getEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(Boolean eliminado) {
+        this.eliminado = eliminado;
+    }
 }

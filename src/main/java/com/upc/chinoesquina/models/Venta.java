@@ -25,4 +25,52 @@ public class Venta extends AuditoriaData {
 
     @OneToMany(mappedBy = "venta")
     private Set<VentaDetalle> ventaDetalle;
+
+    public Integer getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    public Cliente getObjCliente() {
+        return objCliente;
+    }
+
+    public void setObjCliente(Cliente objCliente) {
+        this.objCliente = objCliente;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Float getMontoVenta() {
+        return montoVenta;
+    }
+
+    public void setMontoVenta(Float montoVenta) {
+        this.montoVenta = montoVenta;
+    }
+
+    public Float getValorVenta() {
+        return valorVenta;
+    }
+
+    public void setValorVenta(Float valorVenta) {
+        this.valorVenta = valorVenta;
+    }
+
+    public Set<VentaDetalle> getVentaDetalle() {
+        return ventaDetalle;
+    }
+
+    public void setVentaDetalle(Set<VentaDetalle> ventaDetalle) {
+        this.ventaDetalle = ventaDetalle;
+    }
 }

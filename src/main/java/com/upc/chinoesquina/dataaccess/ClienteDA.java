@@ -42,4 +42,20 @@ public class ClienteDA {
     public List<Cliente> BuscarPorApellido(String apellido) {
         return repository.findByApellido(apellido);
     }
+
+    public List<Cliente> ListarPorNroDocumento(String nroDocumento){
+        return repository.findByNroDocumento(nroDocumento);
+    }
+
+    public List<Cliente> ListarContieneNroDocumento(String nroDocumento){
+        return repository.findByNroDocumentoContains(nroDocumento);
+    }
+
+    public List<Cliente> ListarPorIdDocumentoIdentidad(Integer idDocumentoIdentidad){
+        return repository.findByIdDocumentoIdentidad(idDocumentoIdentidad);
+    }
+
+    public List<Cliente> ListarPorCorreo(String email){
+        return repository.findByCorreo(email);
+    }
 }

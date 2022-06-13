@@ -44,4 +44,24 @@ public class ClienteController {
                                           @RequestParam(value = "apellido", required = false) String apellido){
         return objClienteBL.ListarConFiltros(nombre, apellido);
     }
+
+    @GetMapping("/documento")
+    public List<Cliente> ListarPorNroDocumento(@RequestParam("nroDocumento") String nroDocumento){
+        return objClienteBL.ListarPorNroDocumento(nroDocumento);
+    }
+
+    @GetMapping("/nrodocumento")
+    public List<Cliente> ListarContieneNroDocumento(@RequestParam("nroDocumento") String nroDocumento){
+        return objClienteBL.ListarContieneNroDocumento(nroDocumento);
+    }
+
+    @GetMapping("/id")
+    public List<Cliente> ListarPorIdDocumentoIdentidad(@RequestParam("idDocumentoIdentidad") Integer idDocumentoIdentidad){
+        return objClienteBL.ListarPorIdDocumentoIdentidad(idDocumentoIdentidad);
+    }
+
+    @GetMapping("/sp")
+    public List<Cliente> ListarPorCorreo(@RequestParam("email") String email){
+        return objClienteBL.ListarPorCorreo(email);
+    }
 }

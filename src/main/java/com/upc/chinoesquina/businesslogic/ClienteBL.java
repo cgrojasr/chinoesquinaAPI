@@ -49,4 +49,20 @@ public class ClienteBL {
         else
             return objClienteDA.BuscarPorNombreYApellido(nombre, apellido);
     }
+
+    public List<Cliente> ListarPorNroDocumento(String nroDocumento){
+        return objClienteDA.ListarPorNroDocumento(nroDocumento);
+    }
+
+    public List<Cliente> ListarContieneNroDocumento(String nroDocumento){
+        return objClienteDA.ListarContieneNroDocumento(nroDocumento);
+    }
+
+    public List<Cliente> ListarPorIdDocumentoIdentidad(Integer idDocumentoIdentidad){
+        return objClienteDA.ListarPorIdDocumentoIdentidad(idDocumentoIdentidad);
+    }
+
+    public List<Cliente> ListarPorCorreo(String email){
+        return objClienteDA.ListarPorCorreo(email);
+    }
 }

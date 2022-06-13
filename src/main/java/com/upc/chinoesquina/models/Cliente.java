@@ -7,7 +7,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "cliente")
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cliente extends AuditoriaData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

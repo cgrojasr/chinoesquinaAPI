@@ -16,4 +16,28 @@ public class ProductoVenta extends AuditoriaData{
 
     @OneToMany(mappedBy = "productoVenta")
     private Set<VentaDetalle> ventaDetalle;
+
+    public Integer getIdProductoVenta() {
+        return idProductoVenta;
+    }
+
+    public void setIdProductoVenta(Integer idProductoVenta) {
+        this.idProductoVenta = idProductoVenta;
+    }
+
+    public Float getValorVenta() {
+        return valorVenta;
+    }
+
+    public void setValorVenta(Float valorVenta) {
+        this.valorVenta = valorVenta;
+    }
+
+    public Set<VentaDetalle> getVentaDetalle() {
+        return ventaDetalle;
+    }
+
+    public void setVentaDetalle(Set<VentaDetalle> ventaDetalle) {
+        this.ventaDetalle = ventaDetalle;
+    }
 }

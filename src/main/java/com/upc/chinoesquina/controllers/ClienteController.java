@@ -39,10 +39,14 @@ public class ClienteController {
         return objClienteBL.Eliminar(idCliente);
     }
 
-    @GetMapping("/filtros")
-    public List<Cliente> ListarConFiltros(@RequestParam(value = "nombre", required = false) String nombre,
-                                          @RequestParam(value = "apellido", required = false) String apellido){
-        return objClienteBL.ListarConFiltros(nombre, apellido);
+
+    @GetMapping("/{tipo}/filtros")
+    public List<Cliente> ListarConFiltros(@PathVariable Integer tipo,
+                                          @RequestParam(value = "nombre", required = false) String nombre,
+                                          @RequestParam(value = "apellido", required = false) String apellido,
+                                          @RequestParam(value = "idDocumentoIdentidad", required = false) Integer idDocumentoIdentidad,
+                                          @RequestParam(value = "nroDocumento", required = false) String nroDocumento){
+        return objClienteBL.ListarConFiltros(tipo, nombre, apellido, idDocumentoIdentidad, nroDocumento);
     }
 
     @GetMapping("/documento")
@@ -50,18 +54,8 @@ public class ClienteController {
         return objClienteBL.ListarPorNroDocumento(nroDocumento);
     }
 
-    @GetMapping("/nrodocumento")
-    public List<Cliente> ListarContieneNroDocumento(@RequestParam("nroDocumento") String nroDocumento){
-        return objClienteBL.ListarContieneNroDocumento(nroDocumento);
-    }
-
-    @GetMapping("/id")
-    public List<Cliente> ListarPorIdDocumentoIdentidad(@RequestParam("idDocumentoIdentidad") Integer idDocumentoIdentidad){
-        return objClienteBL.ListarPorIdDocumentoIdentidad(idDocumentoIdentidad);
-    }
-
     @GetMapping("/sp")
-    public List<Cliente> ListarPorCorreo(@RequestParam("email") String email){
-        return objClienteBL.ListarPorCorreo(email);
+    public List<Cliente> ListarPorEmail(@RequestParam("email") String email){
+        return objClienteBL.ListarPorEmail(email);
     }
 }

@@ -51,11 +51,15 @@ public class ClienteDA {
         return repository.findByNroDocumentoContains(nroDocumento);
     }
 
-    public List<Cliente> ListarPorIdDocumentoIdentidad(Integer idDocumentoIdentidad){
-        return repository.findByIdDocumentoIdentidad(idDocumentoIdentidad);
+    public List<Cliente> ListarPorTipoDocIdentidad(Integer idDocumentoIdentidad){
+        return repository.findByDocumentoIdentidadIdDocumentoIdentidad(idDocumentoIdentidad);
     }
 
-    public List<Cliente> ListarPorCorreo(String email){
-        return repository.findByCorreo(email);
+    public List<Cliente> ListarPorTipoDocIdentidadYNroDocumento(Integer idDocumentoIdentidad, String nroDocumento){
+        return repository.findByIdDocumentoIdentidadAndNroDocumento(idDocumentoIdentidad, nroDocumento);
+    }
+
+    public List<Cliente> ListarPorEmail(String email){
+        return repository.findByEmail(email);
     }
 }

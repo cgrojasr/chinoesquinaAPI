@@ -39,15 +39,26 @@ public class ClienteBL {
         return objClienteDA.Eliminar(idCliente);
     }
 
-    public List<Cliente> ListarConFiltros(String nombre, String apellido) {
-        if(nombre == null && apellido == null)
-            return objClienteDA.ListarTodo();
-        else if(nombre != null && apellido == null)
-            return objClienteDA.BuscarPorNombre(nombre);
-        else if(nombre == null && apellido != null)
-            return objClienteDA.BuscarPorApellido(apellido);
-        else
-            return objClienteDA.BuscarPorNombreYApellido(nombre, apellido);
+    public List<Cliente> ListarConFiltros(Integer tipo, String nombre, String apellido, Integer idDocumentoIdentidad, String nroDocumento) {
+        if(tipo == 1) {
+            if(nombre == null && apellido == null)
+                return objClienteDA.ListarTodo();
+            else if(nombre != null && apellido == null)
+                return objClienteDA.BuscarPorNombre(nombre);
+            else if(nombre == null && apellido != null)
+                return objClienteDA.BuscarPorApellido(apellido);
+            else
+                return objClienteDA.BuscarPorNombreYApellido(nombre, apellido);
+        } else {
+            if(idDocumentoIdentidad == null && nroDocumento == null)
+                return objClienteDA.ListarTodo();
+            else if(idDocumentoIdentidad != null && nroDocumento == null)
+                return objClienteDA.ListarPorTipoDocIdentidad(idDocumentoIdentidad);
+            else if(idDocumentoIdentidad == null && nroDocumento != null)
+                return objClienteDA.ListarContieneNroDocumento(nroDocumento);
+            else
+                return objClienteDA.ListarPorTipoDocIdentidadYNroDocumento(idDocumentoIdentidad, nroDocumento);
+        }
     }
 
     public List<Cliente> ListarPorNroDocumento(String nroDocumento){
@@ -58,11 +69,11 @@ public class ClienteBL {
         return objClienteDA.ListarContieneNroDocumento(nroDocumento);
     }
 
-    public List<Cliente> ListarPorIdDocumentoIdentidad(Integer idDocumentoIdentidad){
-        return objClienteDA.ListarPorIdDocumentoIdentidad(idDocumentoIdentidad);
+    public List<Cliente> ListarPorTipoDocIdentidad(Integer idDocumentoIdentidad){
+        return objClienteDA.ListarPorTipoDocIdentidad(idDocumentoIdentidad);
     }
 
-    public List<Cliente> ListarPorCorreo(String email){
-        return objClienteDA.ListarPorCorreo(email);
+    public List<Cliente> ListarPorEmail(String email){
+        return objClienteDA.ListarPorEmail(email);
     }
 }

@@ -14,7 +14,7 @@ public class Cliente extends AuditoriaData {
     private Integer idCliente;
     private String nombre;
     private String apellido;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "id_documento_identidad", referencedColumnName = "id_documento_identidad")
     private DocumentoIdentidad documentoIdentidad;
     @Column(name = "nro_documento")

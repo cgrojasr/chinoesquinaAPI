@@ -24,6 +24,7 @@ public class ClienteBL {
 
     public Cliente Registrar(Cliente objCliente) {
         objCliente.setFechaRegistro(new Date(System.currentTimeMillis()));
+        objCliente.setEliminado(false);
         return  objClienteDA.Registrar(objCliente);
     }
 

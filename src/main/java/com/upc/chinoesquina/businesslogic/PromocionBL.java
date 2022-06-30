@@ -45,7 +45,7 @@ public class PromocionBL {
         if(nombre != null && descripcion != null)
             return objPromocionDA.ListarPorNombreYDescripcion(nombre, descripcion);
         else if(nombre != null & descripcion == null)
-            return objPromocionDA.ListarPorNombre(nombre);
+            return objPromocionDA.ListarPorContenerNombre(nombre);
         else if(nombre == null & descripcion != null)
             return objPromocionDA.ListarPorContenerDescripcion(descripcion);
         else

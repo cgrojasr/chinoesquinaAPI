@@ -12,6 +12,7 @@ public interface IPromocionDA extends JpaRepository<Promocion, Integer> {
     List<Promocion> findByDescripcion(String descripcion);
     List<Promocion> findByNombreAndDescripcion(String nombre, String descripcion);
     List<Promocion> findByDescripcionContains(String descripcion);
+    List<Promocion> findByNombreContains(String nombre);
     @Query("SELECT p FROM Promocion p WHERE p.fechaInicio >= CONVERT(DATETIME, :fechaInicio, 101) AND p.fechaFinal <= CONVERT(DATETIME, :fechaFinal, 101)")
     List<Promocion> findByFecha(Date fechaInicio, Date fechaFinal);
 }

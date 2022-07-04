@@ -52,7 +52,7 @@ public class PromocionBL {
             return  objPromocionDA.ListarTodo();
     }
 
-    public List<Promocion> ListarPorRangoFechas(Date fechaInicio, Date fechaFinal){
-        return objPromocionDA.ListarPorRangoFechas(fechaInicio, fechaFinal);
+    public List<Promocion> ListarPorFecha(Date fecha){
+        return objPromocionDA.ListarPorFecha(fecha);
     }
 }

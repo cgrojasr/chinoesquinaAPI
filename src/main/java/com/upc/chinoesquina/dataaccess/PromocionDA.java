@@ -51,7 +51,7 @@ public class PromocionDA {
         return repository.findByNombreContains(nombre);
     }
 
-    public List<Promocion> ListarPorRangoFechas(Date fechaInicio, Date fechaFinal){
-        return repository.findByFecha(fechaInicio, fechaFinal);
+    public List<Promocion> ListarPorFecha(Date fecha){
+        return repository.findByFecha(fecha);
     }
 }

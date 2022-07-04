@@ -45,9 +45,8 @@ public class PromocionController {
         return objPromocionBL.ListarPorFiltros(nombre, descripcion);
     }
 
-    @GetMapping("/fechas")
-    public List<Promocion> ListarPorRangoFechas(@RequestParam(value = "fechaInicio", required = false) Date fechaInicio,
-                                                @RequestParam(value = "fechaFinal", required = false) Date fechaFinal){
-        return objPromocionBL.ListarPorRangoFechas(fechaInicio, fechaFinal);
+    @GetMapping("/fecha")
+    public List<Promocion> ListarPorFecha(@RequestParam(value = "fecha", required = false) Date fecha){
+        return objPromocionBL.ListarPorFecha(fecha);
     }
 }

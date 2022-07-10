@@ -1,8 +1,9 @@
 package com.upc.chinoesquina.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "venta")
@@ -12,7 +13,7 @@ public class Venta extends AuditoriaData {
     @Column(name = "id_venta")
     private Integer idVenta;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     private Cliente objCliente;
     private Date fecha;
@@ -23,11 +24,14 @@ public class Venta extends AuditoriaData {
     @Column(name = "valor_venta")
     private Float valorVenta;
 
-    @OneToMany(mappedBy = "venta")
-    private Set<VentaDetalle> ventaDetalle;
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
+    private Collection<VentaDetalle> ventaDetalle = new ArrayList<>();;
 
-    @OneToMany(mappedBy = "venta")
-    private Set<VentaPromocion> ventaPromocion;
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
+    private Collection<VentaPromocion> ventaPromocion = new ArrayList<>();;
+
+    @Column(name = "id_local")
+    private Integer idLocal;
 
     public Integer getIdVenta() {
         return idVenta;
@@ -69,19 +73,27 @@ public class Venta extends AuditoriaData {
         this.valorVenta = valorVenta;
     }
 
-    public Set<VentaDetalle> getVentaDetalle() {
+    public Collection<VentaDetalle> getVentaDetalle() {
         return ventaDetalle;
     }
 
-    public void setVentaDetalle(Set<VentaDetalle> ventaDetalle) {
+    public void setVentaDetalle(Collection<VentaDetalle> ventaDetalle) {
         this.ventaDetalle = ventaDetalle;
     }
 
-    public Set<VentaPromocion> getVentaPromocion() {
+    public Collection<VentaPromocion> getVentaPromocion() {
         return ventaPromocion;
     }
 
-    public void setVentaPromocion(Set<VentaPromocion> ventaPromocion) {
+    public void setVentaPromocion(Collection<VentaPromocion> ventaPromocion) {
         this.ventaPromocion = ventaPromocion;
+    }
+
+    public Integer getIdLocal() {
+        return idLocal;
+    }
+
+    public void setIdLocal(Integer idLocal) {
+        this.idLocal = idLocal;
     }
 }

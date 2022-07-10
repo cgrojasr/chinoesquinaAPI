@@ -9,27 +9,22 @@ import java.util.Date;
 @MappedSuperclass
 public class AuditoriaData {
     private Boolean activo;
-    @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "id_usuario_registro")
     private Integer idUsuarioRegistro;
 
-    @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "fecha_registro")
     private Date fechaRegistro;
 
-    @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "id_usuario_modifico")
     private Integer idUsuarioModifico;
 
-    @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "fecha_modifico")
     private Date fechaModifico;
 
-    @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Boolean eliminado;
 

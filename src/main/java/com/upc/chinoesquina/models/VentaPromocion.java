@@ -1,25 +1,39 @@
 package com.upc.chinoesquina.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "venta_promocion")
-public class VentaPromocion extends AuditoriaData {
+public class VentaPromocion {
     @EmbeddedId
     private VentaPromocionKey idVentaPromocion;
 
     @ManyToOne
-    @MapsId("id_venta")
+    @MapsId("idVenta")
     @JoinColumn(name = "id_venta")
+    @JsonIgnore
     private Venta venta;
 
     @ManyToOne
-    @MapsId("id_promocion")
+    @MapsId("idPromocion")
     @JoinColumn(name = "id_promocion")
+    @JsonIgnore
     private Promocion promocion;
 
     private Integer puntos;
+
+    private Boolean eliminado;
+
+    public Boolean getEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(Boolean eliminado) {
+        this.eliminado = eliminado;
+    }
 
     public VentaPromocionKey getIdVentaPromocion() {
         return idVentaPromocion;

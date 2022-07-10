@@ -13,4 +13,8 @@ public class VentaDA {
     public Venta Registrar(Venta objVenta){
         return repository.save(objVenta);
     }
+
+    public Venta BuscarPorId(Integer idVenta) {
+        return repository.findById(idVenta).orElse(null);
+    }
 }

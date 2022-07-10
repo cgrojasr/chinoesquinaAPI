@@ -1,21 +1,25 @@
 package com.upc.chinoesquina.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "venta_detalle")
 public class VentaDetalle {
     @EmbeddedId
-    private VentaProductoKey id;
+    private VentaProductoKey idVentaDetalle;
 
-    @ManyToOne
-    @MapsId("id_venta")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @MapsId("idVenta")
     @JoinColumn(name = "id_venta")
+    @JsonIgnore
     private Venta venta;
 
-    @ManyToOne
-    @MapsId("id_producto_venta")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @MapsId("idProductoVenta")
     @JoinColumn(name = "id_producto_venta")
+    @JsonIgnore
     private ProductoVenta productoVenta;
 
     @Column(name = "valor_venta")
@@ -25,12 +29,12 @@ public class VentaDetalle {
 
     private Boolean eliminado;
 
-    public VentaProductoKey getId() {
-        return id;
+    public VentaProductoKey getIdVentaDetalle() {
+        return idVentaDetalle;
     }
 
-    public void setId(VentaProductoKey id) {
-        this.id = id;
+    public void setIdVentaDetalle(VentaProductoKey idVentaDetalle) {
+        this.idVentaDetalle = idVentaDetalle;
     }
 
     public Venta getVenta() {

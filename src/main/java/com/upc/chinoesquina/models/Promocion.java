@@ -1,6 +1,8 @@
 package com.upc.chinoesquina.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -13,8 +15,8 @@ public class    Promocion extends AuditoriaData {
     private Integer idPromocion;
     private String nombre;
     private String descripcion;
-    @OneToMany(mappedBy = "promocion")
-    private Set<VentaPromocion> ventaPromocion;
+    @OneToMany(mappedBy = "promocion", cascade = CascadeType.ALL)
+    private Collection<VentaPromocion> ventaPromocion = new ArrayList<>();;
     @Column(name = "fecha_inicio")
     private Date fechaInicio;
     @Column(name = "fecha_final")
@@ -60,11 +62,11 @@ public class    Promocion extends AuditoriaData {
         this.fechaFinal = fechaFinal;
     }
 
-    public Set<VentaPromocion> getVentaPromocion() {
+    public Collection<VentaPromocion> getVentaPromocion() {
         return ventaPromocion;
     }
 
-    public void setVentaPromocion(Set<VentaPromocion> ventaPromocion) {
+    public void setVentaPromocion(Collection<VentaPromocion> ventaPromocion) {
         this.ventaPromocion = ventaPromocion;
     }
 }

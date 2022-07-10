@@ -1,7 +1,8 @@
 package com.upc.chinoesquina.models;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "producto_venta")
@@ -14,8 +15,14 @@ public class ProductoVenta extends AuditoriaData{
     @Column(name = "valor_venta")
     private Float valorVenta;
 
-    @OneToMany(mappedBy = "productoVenta")
-    private Set<VentaDetalle> ventaDetalle;
+    @Column(name = "id_local")
+    private Integer idLocal;
+
+    @Column(name = "id_producto")
+    private Integer idProducto;
+
+    @OneToMany(mappedBy = "productoVenta", cascade = CascadeType.ALL)
+    private Collection<VentaDetalle> ventaDetalle = new ArrayList<>();
 
     public Integer getIdProductoVenta() {
         return idProductoVenta;
@@ -33,11 +40,27 @@ public class ProductoVenta extends AuditoriaData{
         this.valorVenta = valorVenta;
     }
 
-    public Set<VentaDetalle> getVentaDetalle() {
+    public Collection<VentaDetalle> getVentaDetalle() {
         return ventaDetalle;
     }
 
-    public void setVentaDetalle(Set<VentaDetalle> ventaDetalle) {
+    public void setVentaDetalle(Collection<VentaDetalle> ventaDetalle) {
         this.ventaDetalle = ventaDetalle;
+    }
+
+    public Integer getIdLocal() {
+        return idLocal;
+    }
+
+    public void setIdLocal(Integer idLocal) {
+        this.idLocal = idLocal;
+    }
+
+    public Integer getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
     }
 }

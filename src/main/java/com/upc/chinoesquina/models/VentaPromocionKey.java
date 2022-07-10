@@ -12,4 +12,20 @@ public class VentaPromocionKey implements Serializable {
 
     @Column(name = "id_venta")
     private Integer idVenta;
+
+    public Integer getIdPromocion() {
+        return idPromocion;
+    }
+
+    public void setIdPromocion(Integer idPromocion) {
+        this.idPromocion = idPromocion;
+    }
+
+    public Integer getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
+    }
 }

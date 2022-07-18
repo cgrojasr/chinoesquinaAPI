@@ -1,4 +1,4 @@
-package com.upc.chinoesquina.dataaccess.interfaces;
+package com.upc.chinoesquina.repositories;
 
 import com.upc.chinoesquina.models.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IClienteDA extends JpaRepository<Cliente, Integer> {
+public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     List<Cliente> findByNroDocumento(String nroDocumento);
     List<Cliente> findByNombreAndApellido(String nombre, String apellido);
     List<Cliente> findByNombre(String nombre);

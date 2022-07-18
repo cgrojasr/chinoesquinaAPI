@@ -1,58 +1,57 @@
 package com.upc.chinoesquina.businesslogic;
 
-import com.upc.chinoesquina.dataaccess.PromocionDA;
 import com.upc.chinoesquina.models.Promocion;
+import com.upc.chinoesquina.repositories.PromocionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PromocionBL {
     @Autowired
-    private PromocionDA objPromocionDA;
+    private PromocionRepository promocionRepository;
 
     public List<Promocion> ListarTodo(){
-        return  objPromocionDA.ListarTodo();
+        return  promocionRepository.findAll();
     }
 
     public Promocion Registrar(Promocion objPromocion){
 
         objPromocion.setFechaRegistro(new Date(System.currentTimeMillis()));
-        return  objPromocionDA.Registrar(objPromocion);
+        return  promocionRepository.save(objPromocion);
     }
 
     public Promocion BuscarPorId(Integer idPromocion){
-        return objPromocionDA.BuscarPorId(idPromocion);
+        return promocionRepository.findById(idPromocion).orElse(null);
     }
 
     public Promocion Modificar(Promocion objPromocion){
-        Promocion objPromocionDB = objPromocionDA.BuscarPorId(objPromocion.getIdPromocion());
+        Promocion objPromocionDB = BuscarPorId(objPromocion.getIdPromocion());
         objPromocion.setFechaRegistro(objPromocionDB.getFechaRegistro());
         objPromocion.setIdUsuarioRegistro(objPromocionDB.getIdUsuarioRegistro());
         objPromocion.setFechaModifico(new Date(System.currentTimeMillis()));
-        return objPromocionDA.Registrar(objPromocion);
+        return  promocionRepository.save(objPromocion);
     }
 
     public Boolean Eliminar(Integer idPromocion){
-        return objPromocionDA.Eliminar(idPromocion);
+        promocionRepository.deleteById(idPromocion);
+        return true;
     }
 
     public List<Promocion> ListarPorFiltros(String nombre, String descripcion){
         if(nombre != null && descripcion != null)
-            return objPromocionDA.ListarPorNombreYDescripcion(nombre, descripcion);
+            return promocionRepository.findByNombreAndDescripcion(nombre, descripcion);
         else if(nombre != null & descripcion == null)
-            return objPromocionDA.ListarPorContenerNombre(nombre);
+            return promocionRepository.findByNombreContains(nombre);
         else if(nombre == null & descripcion != null)
-            return objPromocionDA.ListarPorContenerDescripcion(descripcion);
+            return promocionRepository.findByDescripcionContains(descripcion);
         else
-            return  objPromocionDA.ListarTodo();
+            return  promocionRepository.findAll();
     }
 
     public List<Promocion> ListarPorFecha(Date fecha){
-        return objPromocionDA.ListarPorFecha(fecha);
+        return promocionRepository.findByFecha(fecha);
     }
 }

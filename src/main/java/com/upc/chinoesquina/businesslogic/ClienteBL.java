@@ -1,80 +1,80 @@
 package com.upc.chinoesquina.businesslogic;
 
-import com.upc.chinoesquina.dataaccess.ClienteDA;
 import com.upc.chinoesquina.models.Cliente;
+import com.upc.chinoesquina.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClienteBL {
     @Autowired
-    private ClienteDA objClienteDA;
+    private ClienteRepository clienteRepository;
 
     public List<Cliente> ListarTodo(){
-        return  objClienteDA.ListarTodo();
+        return  clienteRepository.findAll();
     }
 
     public Cliente BuscarPorId(Integer idCliente){
-        return objClienteDA.BuscarPorId(idCliente);
+        return clienteRepository.findById(idCliente).orElse(null);
     }
 
     public Cliente Registrar(Cliente objCliente) {
         objCliente.setFechaRegistro(new Date(System.currentTimeMillis()));
         objCliente.setEliminado(false);
-        return  objClienteDA.Registrar(objCliente);
+        return  clienteRepository.save(objCliente);
     }
 
     public Cliente Modificar(Cliente objCliente) {
-        Cliente objClienteDB = objClienteDA.BuscarPorId(objCliente.getIdCliente());
+        Cliente objClienteDB = BuscarPorId(objCliente.getIdCliente());
         objCliente.setIdUsuarioRegistro(objClienteDB.getIdUsuarioRegistro());
         objCliente.setFechaRegistro(objClienteDB.getFechaRegistro());
         objCliente.setFechaModifico(new Date(System.currentTimeMillis()));
-        return objClienteDA.Registrar(objCliente);
+        return clienteRepository.save(objCliente);
     }
 
     public Boolean Eliminar(Integer idCliente) {
-        return objClienteDA.Eliminar(idCliente);
+        clienteRepository.deleteById(idCliente);
+        return true;
     }
 
     public List<Cliente> ListarConFiltros(Integer tipo, String nombre, String apellido, Integer idDocumentoIdentidad, String nroDocumento) {
         if(tipo == 1) {
             if(nombre == null && apellido == null)
-                return objClienteDA.ListarTodo();
+                return clienteRepository.findAll();
             else if(nombre != null && apellido == null)
-                return objClienteDA.BuscarPorNombre(nombre);
+                return clienteRepository.findByNombre(nombre);
             else if(nombre == null && apellido != null)
-                return objClienteDA.BuscarPorApellido(apellido);
+                return clienteRepository.findByApellido(apellido);
             else
-                return objClienteDA.BuscarPorNombreYApellido(nombre, apellido);
+                return clienteRepository.findByNombreAndApellido(nombre, apellido);
         } else {
             if(idDocumentoIdentidad == null && nroDocumento == null)
-                return objClienteDA.ListarTodo();
+                return clienteRepository.findAll();
             else if(idDocumentoIdentidad != null && nroDocumento == null)
-                return objClienteDA.ListarPorTipoDocIdentidad(idDocumentoIdentidad);
+                return clienteRepository.findByDocumentoIdentidadIdDocumentoIdentidad(idDocumentoIdentidad);
             else if(idDocumentoIdentidad == null && nroDocumento != null)
-                return objClienteDA.ListarContieneNroDocumento(nroDocumento);
+                return clienteRepository.findByNroDocumentoContains(nroDocumento);
             else
-                return objClienteDA.ListarPorTipoDocIdentidadYNroDocumento(idDocumentoIdentidad, nroDocumento);
+                return clienteRepository.findByIdDocumentoIdentidadAndNroDocumento(idDocumentoIdentidad, nroDocumento);
         }
     }
 
     public List<Cliente> ListarPorNroDocumento(String nroDocumento){
-        return objClienteDA.ListarPorNroDocumento(nroDocumento);
+        return clienteRepository.findByNroDocumento(nroDocumento);
     }
 
     public List<Cliente> ListarContieneNroDocumento(String nroDocumento){
-        return objClienteDA.ListarContieneNroDocumento(nroDocumento);
+        return clienteRepository.findByNroDocumentoContains(nroDocumento);
     }
 
     public List<Cliente> ListarPorTipoDocIdentidad(Integer idDocumentoIdentidad){
-        return objClienteDA.ListarPorTipoDocIdentidad(idDocumentoIdentidad);
+        return clienteRepository.findByDocumentoIdentidadIdDocumentoIdentidad(idDocumentoIdentidad);
     }
 
     public List<Cliente> ListarPorEmail(String email){
-        return objClienteDA.ListarPorEmail(email);
+        return clienteRepository.findByEmail(email);
     }
 }
